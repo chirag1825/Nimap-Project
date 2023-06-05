@@ -1,0 +1,125 @@
+﻿@model Nimap.Controllers.Category
+
+<style>
+
+    <style >
+    body {
+        background-color: #f2f2f2;
+    }
+
+    .form-horizontal {
+        margin-top: 50px;
+        border: 2px solid black;
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 20px;
+        background-color: white;
+        text-align: center;
+    }
+
+        .form-horizontal h4 {
+            margin-bottom: 15px;
+            background-color: #111;
+            color: white;
+            padding: 5px;
+        }
+
+        .form-horizontal hr {
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 0;
+            border-top: 1px solid #eee;
+        }
+
+        .form-horizontal .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-horizontal .control-label {
+            text-align: right;
+            margin-bottom: 0;
+            padding-top: 7px;
+        }
+
+        .form-horizontal .col-md-10 {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-horizontal .btn-default {
+            background-color: black;
+            color: white;
+            border: none;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+    input[type="submit"] {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .text-danger {
+        color: #a94442;
+    }
+
+    input[type="text"] {
+        text-align: left;
+    }
+
+
+
+
+    .from-group1 {
+        display: inline-flex;
+        justify-content: center;
+        text-align: center;
+        align-content: center;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Edit Category</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    @Html.HiddenFor(model => model.CategoryId)  <!-- Hide the CategoryId field -->
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CategoryName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CategoryName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    
+
+    <div class="form-group">
+        <div class="from-group1">
+            <input type="submit" value="Save" class="btn btn-default" />
+
+        </div>
+        <div class="from-group1">
+            <a href="@Url.Action("", "Category")" class="btn btn-dark">Back</a>
+
+        </div>
+
+    </div>
+
+</div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

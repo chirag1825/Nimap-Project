@@ -1,0 +1,103 @@
+﻿
+
+@model Nimap.Controllers.Category
+
+    <style>
+        table {
+            border-collapse: collapse;
+            border: 50px solid black;
+            margin: auto;
+            border-color:aliceblue;
+            border-block-color:white;
+            
+        }
+
+        th {
+            background-color: black;
+            color: white;
+            text-align: center;
+        }
+
+        td {
+            text-align: center;
+        }
+
+            td:first-child, th:first-child {
+                background-color: black;
+                color: white;
+                text-align: center;
+            }
+
+        h4 {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+
+        .form-actions {
+            text-align: center;
+        }
+
+        .btn-default {
+            background-color: black;
+            color: white;
+            border: none;
+        }
+
+
+    </style>
+
+    <div>
+        <h4>Category Details</h4>
+        <hr />
+        <table class="table">
+            <tr>
+                <td>Category ID:</td>
+                <td>@Model.CategoryId</td>
+            </tr>
+            <tr>
+                <td>Category Name:</td>
+                <td>@Model.CategoryName</td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <br />
+        <br />
+        <h4 style="background-color: black;">Associated Products</h4>
+        <hr />
+        @if (Model.Products != null && Model.Products.Any())
+        {
+            <table class="table">
+                <tr>
+                    <th>Product ID</th>
+                    <th style="background-color:black ; color:white">Product Name</th>
+                </tr>
+                @foreach (var product in Model.Products)
+                {
+                    <tr>
+                        <td>@product.ProductId</td>
+                        <td style="background-color : black ; color:white">@product.ProductName</td>
+                    </tr>
+                }
+            </table>
+        }
+        else
+        {
+            <p>No associated products found.</p>
+        }
+
+        <div class="form-actions no-color">
+            <div class="from-group1">
+                <a href="@Url.Action("Edit", new { id = Model.CategoryId })" class="btn btn-dark">Edit</a>
+                &nbsp;&nbsp;
+                <a href="@Url.Action("", "Category")" class="btn btn-dark">Back</a>
+
+            </div>
+
+        </div>
+
+    </div>

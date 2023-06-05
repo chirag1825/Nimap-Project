@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Nimap.Controllers.Product>
+
+@{
+    ViewBag.Title = "Product List";
+}
+
+<style>
+    .table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        .table th, .table td {
+            text-align: left;
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 20px;
+        }
+
+        .table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .table th {
+            background-color: #333;
+            color: white;
+        }
+</style>
+
+<h2 class="text-center" >Product List</h2>
+
+
+<div class="text-center">
+    <a href="@Url.Action("Create", "Product")" class="btn btn-dark">Create New</a>
+
+</div>
+<br />
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryId)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ProductId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })
+            </td>
+        </tr>
+    }
+
+</table>
+
